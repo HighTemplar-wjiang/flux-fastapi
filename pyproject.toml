@@ -11,6 +11,8 @@ dynamic = ["version"]
 dependencies = [
   "accelerate",
   "einops",
+  "fastapi",
+  "diffusers >= 0.31.0",
   "fire >= 0.6.0",
   "huggingface-hub",
   "safetensors",
@@ -20,6 +22,7 @@ dependencies = [
   "protobuf",
   "requests",
   "invisible-watermark",
+  "uvicorn[standard]",
   "ruff == 0.6.8",
   "accelerate",
 ]
