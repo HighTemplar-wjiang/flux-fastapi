@@ -10,12 +10,52 @@ This repo contains minimal inference code to run image generation & editing with
 ## Local installation
 
 ```bash
-cd $HOME && git clone https://github.com/black-forest-labs/flux
-cd $HOME/flux
+cd $HOME && git clone https://github.com/HighTemplar-wjiang/flux-fastapi.git
+cd $HOME/flux-fastapi
 python3.10 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[all]"
 ```
+
+## Running the FastAPI image server
+
+This repo adds a thin FastAPI wrapper around `FluxPipeline`. After installing the package (see above) you can start the API locally:
+
+```bash
+cd flux-fastapi
+./run_api.sh  # customize HOST/PORT/MODEL_ID via env vars if needed
+```
+
+The server exposes two endpoints:
+
+1. `GET /health` – quick readiness check
+2. `POST /generate` – run text-to-image and stream back PNG bytes
+
+### Health check
+
+```bash
+curl http://localhost:8000/health
+```
+
+### Generate an image
+
+`/generate` expects JSON that matches `GenerateRequest` in `app/main.py`. All fields are optional except `prompt`.
+
+```bash
+curl -X POST http://localhost:8000/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "A neon flux capacitor hovering over a forest at dusk",
+    "guidance_scale": 1.2,
+    "num_inference_steps": 8,
+    "height": 768,
+    "width": 512,
+    "seed": 42
+  }' \
+  --output flux_sample.png
+```
+
+The response body is raw PNG data, so be sure to write it to disk (e.g., `--output flux_sample.png`). Override defaults like `DEFAULT_STEPS` or `MODEL_ID` by exporting the corresponding environment variables before running `run_api.sh`.
 
 ### Local installation with TensorRT support
 

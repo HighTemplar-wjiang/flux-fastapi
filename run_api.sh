@@ -3,10 +3,10 @@ set -euo pipefail
 
 # Configuration (override by exporting before running or editing below)
 export HOST="${HOST:-0.0.0.0}"
-export PORT="${PORT:-8000}"
+export PORT="${PORT:-8001}"
 
 # Model/settings
-export MODEL_ID="${MODEL_ID:-black-forest-labs/FLUX.1-schnell}"
+export MODEL_ID="./models/FLUX.1-dev/"
 export DEFAULT_GUIDANCE="${DEFAULT_GUIDANCE:-0.0}"
 export DEFAULT_STEPS="${DEFAULT_STEPS:-4}"
 export DEFAULT_MAX_SEQ_LEN="${DEFAULT_MAX_SEQ_LEN:-256}"
@@ -20,7 +20,7 @@ export TORCH_DTYPE="${TORCH_DTYPE:-bfloat16}"  # options: bfloat16|float16|float
 #   export CUDA_VISIBLE_DEVICES=0
 #   export CUDA_VISIBLE_DEVICES=0,1
 # If unset, all GPUs are visible (if present).
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES-}"
+export CUDA_VISIBLE_DEVICES=0
 
 echo "Starting FLUX API on ${HOST}:${PORT}"
 echo "MODEL_ID=${MODEL_ID}"
