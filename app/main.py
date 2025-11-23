@@ -105,6 +105,7 @@ def generate(request: GenerateRequest):
 				generator=generator,
 			).images[0]
 	except Exception as e:
+		print(request)
 		raise HTTPException(status_code=500, detail=f"inference failed: {e}") from e
 
 	buf = io.BytesIO()

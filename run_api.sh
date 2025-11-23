@@ -7,8 +7,8 @@ export PORT="${PORT:-8001}"
 
 # Model/settings
 export MODEL_ID="./models/FLUX.1-dev/"
-export DEFAULT_GUIDANCE="${DEFAULT_GUIDANCE:-0.0}"
-export DEFAULT_STEPS="${DEFAULT_STEPS:-4}"
+export DEFAULT_GUIDANCE="${DEFAULT_GUIDANCE:-1.2}"
+export DEFAULT_STEPS="${DEFAULT_STEPS:-8}"
 export DEFAULT_MAX_SEQ_LEN="${DEFAULT_MAX_SEQ_LEN:-256}"
 export DEFAULT_HEIGHT="${DEFAULT_HEIGHT:-1024}"
 export DEFAULT_WIDTH="${DEFAULT_WIDTH:-1024}"
@@ -20,7 +20,7 @@ export TORCH_DTYPE="${TORCH_DTYPE:-bfloat16}"  # options: bfloat16|float16|float
 #   export CUDA_VISIBLE_DEVICES=0
 #   export CUDA_VISIBLE_DEVICES=0,1
 # If unset, all GPUs are visible (if present).
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=2
 
 echo "Starting FLUX API on ${HOST}:${PORT}"
 echo "MODEL_ID=${MODEL_ID}"
